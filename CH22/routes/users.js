@@ -8,37 +8,58 @@ module.exports = function (db) {
   router.get('/', async function (req, res, next) {
     try {
       //searching
-      const params = []
-      const values = []
-      let counter = 1
+      const wheres = {}
 
-      if (req.query.string && req.query.stringc) {
-        // params.push(`string ilike '%' || $${counter++} || '%'`)
-        values.push(req.query.string);
+      if (req.query.strings && req.query.stringc) {
+        wheres['string'] = new RegExp(`${req.query.strings}`, 'i')
       }
 
-      if (req.query.integer && req.query.integerc) {
-        // params.push(`integer = $${counter++}`)
-        values.push(req.query.integer);
+      if (req.query.integers && req.query.integerc) {
+        wheres['integer'] = parseInt(`${req.query.integers}`)
       }
 
-      if (req.query.float && req.query.floatc) {
-        // params.push(`float = $${counter++}`)
-        values.push(req.query.float);
+      if (req.query.floats && req.query.floatc) {
+        wheres['float'] = parseFloat(`${req.query.floats}`)
       }
 
-      if (req.query.daten && req.query.datenc) {
-        // params.push(`daten = $${counter++}`)
-        values.push(req.query.daten);
+      if (req.query.datens && req.query.datenc) {
+        wheres['daten'] = new Date(`${req.query.datens}`)
       }
 
-      if (req.query.boolean && req.query.booleanc) {
-        // params.push(`boolean = $${counter++}`)
-        values.push(req.query.boolean);
+      if (req.query.booleans && req.query.booleanc) {
+        wheres['boolean'] = JSON.parse(`${req.query.booleans}`)
       }
 
-      const users = await user.find().toArray()
-      res.json(users)
+      //pagination
+      const page = req.query.page || 1
+      const limit = 3
+      const offset = (parseInt(page) - 1) * limit
+
+      const sortBy = req.query.sortBy || '_id'
+      const sortMode = req.query.sortMode || 'asc'
+
+      const result = await user.find(wheres).toArray()
+      let total = result.length
+      const pages = Math.ceil(total / limit)
+
+      const users = await user.find(wheres).limit(limit).skip(offset).sort({[sortBy]: sortMode}).toArray()
+      res.json({ data: users, page: parseInt(page), pages: parseInt(pages), offset, sortBy: sortBy, sortMode: sortMode })
+    } catch (err) {
+      res.json({ err })
+    }
+  });
+
+  router.post('/', async function (req, res, next) {
+    try {
+      const result = await user.insertOne({
+        string: req.body.string,
+        integer: Number(req.body.integer),
+        float: parseFloat(req.body.float),
+        daten: new Date(req.body.daten),
+        boolean: JSON.parse(req.body.boolean)
+      })
+      const uses = await user.findOne({ _id: ObjectId(result.insertedId) })
+      res.json(uses)
     } catch (err) {
       res.json({ err })
     }
@@ -53,15 +74,6 @@ module.exports = function (db) {
     }
   });
 
-  router.post('/', async function (req, res, next) {
-    try {
-      const result = await user.insertOne(req.body)
-      const uses = await user.findOne({ _id: ObjectId(result.insertedId) })
-      res.json(uses)
-    } catch (err) {
-      res.json({ err })
-    }
-  });
 
   router.put('/:id', async function (req, res, next) {
     try {
@@ -70,10 +82,10 @@ module.exports = function (db) {
           $set:
           {
             string: req.body.string,
-            integer: req.body.integer,
-            float: req.body.float,
-            daten: req.body.daten,
-            boolean: req.body.boolean
+            integer: Number(req.body.integer),
+            float: parseFloat(req.body.float),
+            daten: new Date(req.body.daten),
+            boolean: JSON.parse(req.body.boolean)
           }
         }, { returnOriginal: false });
       res.json(result.value)

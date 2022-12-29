@@ -11,6 +11,7 @@
         integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
     <link rel="stylesheet" href="./public/stylesh/style.css">
     <link rel="stylesheet" href="./public/fontawesome/css/all.css">
+    <script src="./moment.min.js"></script>
     <title>BREAD</title>
 </head>
 
@@ -27,51 +28,51 @@
         <div class="card-body">
             <div class="container">
                 <form class="form-horizontal" id="search-form">
-                    <input type="hidden" id="id" value="">
+                    <input type="hidden" id="idc" value="">
                     <div class="form-group">
-                        <label class="col-sm-2" for="string">
-                            <input type="checkbox" name="stringc"> String
+                        <label class="col-sm-2" for="stringc">
+                            <input type="checkbox" name="stringc" id="stringc"> String
                         </label>
                         <div class="col-sm-10">
-                            <input type="text" class="form-control" placeholder="String" name="string" id="strings">
+                            <input type="text" class="form-control" placeholder="String" name="strings" id="strings">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2" for="integer">
-                            <input type="checkbox" name="integerc"> Integer
+                        <label class="col-sm-2" for="integerc">
+                            <input type="checkbox" name="integerc" id="integerc"> Integer
                         </label>
                         <div class="col-sm-10">
-                            <input type="integer" class="form-control" placeholder="Integer" name="integer"
+                            <input type="integer" class="form-control" placeholder="Integer" name="integers"
                                 id="integers">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2" for="float">
-                            <input type="checkbox" name="floatc"> Float
+                        <label class="col-sm-2" for="floatc">
+                            <input type="checkbox" name="floatc" id="floatc"> Float
                         </label>
                         <div class="col-sm-10">
-                            <input type="real" class="form-control" placeholder="Float" name="float" id="floats">
+                            <input type="real" class="form-control" placeholder="Float" name="floats" id="floats">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2" for="daten">
-                            <input type="checkbox" name="datenc"> Date
+                        <label class="col-sm-2" for="datenc">
+                            <input type="checkbox" name="datenc" id="datenc"> Date
                         </label>
                         <div class="col-sm-10">
-                            <input type="date" class="form-control" placeholder="date" name="daten" id="datens">
+                            <input type="date" class="form-control" placeholder="date" name="datens" id="datens">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-sm-2" for="boolean">
-                            <input type="checkbox" name="booleanc"> Boolean
+                        <label class="col-sm-2" for="booleanc">
+                            <input type="checkbox" name="booleanc" id="booleanc"> Boolean
                         </label>
                         <div class="col-sm-10">
-                            <input type="boolean" class="form-control" placeholder="Choose the boolean.." name="boolean"
-                                id="booleans">
+                            <input type="boolean" class="form-control" placeholder="Choose the boolean.."
+                                name="booleans" id="booleans">
                         </div>
                     </div>
                     <div>
-                        <button type="button" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
+                        <button type="submit" class="btn btn-info"><i class="fa-solid fa-magnifying-glass"></i></button>
                         <a href="/" class="btn btn-warning"><i class="fa-solid fa-rotate-left"></i></a>
                     </div>
                 </form>
@@ -124,7 +125,10 @@
                                 id="boolean">
                         </div>
                     </div>
-                    <div style="position: flex; text-align: end; padding-top:5mm">
+                    <div class="col-sm-6" style="position: flex; text-align: start; padding-top:5mm">
+                        <a href="/" class="btn btn-warning"><i class="fa-solid fa-rotate-left"></i></a>
+                    </div>
+                    <div class="col-sm-6" style="position: flex; text-align: end; padding-top:5mm">
                         <button type="submit" class="btn btn-info"><i class="fa-solid fa-download"></i></button>
                     </div>
                 </form>
@@ -133,44 +137,22 @@
 
         <div class="card-body">
             <div class="container" style="padding-top: 0.5rem;">
-                <form method="post">
-                    <table class="table table-striped" style="text-align: center;">
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th><i class="fa-solid <%= %>"></i>  String</th>
-                                <th><i class="fa-solid fa-sort"></i>  Integer</th>
-                                <th><i class="fa-solid fa-sort"></i>  Float</th>
-                                <th><i class="fa-solid fa-sort"></i>  Date</th>
-                                <th>Boolean</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody id="users-body">
+                <table class="table table-striped" style="text-align: center;">
+                    <thead id="sort-tab">
 
-                        </tbody>
-                    </table>
+                    </thead>
+                    <tbody id="users-body">
 
-                    <div style="position: flex; text-align: center;">
-                        <nav>
-                            <ul class="pagination pagination-lg">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">&laquo;</span>
-                                        <span class="sr-only">Previous</span>
-                                    </a>
-                                </li>
-                                <li class="page-item"><a class="page-link" href="">1</a></li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">&raquo;</span>
-                                        <span class="sr-only">Next</span>
-                                    </a>
-                                </li>
-                            </ul>`
-                        </nav>
-                    </div>
-                </form>
+                    </tbody>
+                </table>
+
+                <div style="position: flex; text-align: center;">
+                    <nav>
+                        <ul class="pagination pagination-lg" id="pagination-body">
+
+                        </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </div>
@@ -188,48 +170,168 @@
 
         });
 
-        const editData = (id) => {
-            fetch(`http://localhost:3000/users/${id}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    document.getElementById('id').value = data._id
-                    document.getElementById('string').value = data.string
-                    document.getElementById('integer').value = data.integer
-                    document.getElementById('float').value = data.float
-                    document.getElementById('daten').value = data.daten
-                    document.getElementById('boolean').value = data.boolean
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                });
+        document.getElementById("search-form").addEventListener("submit", function (event) {
+            event.preventDefault()
+            const page = 1
+            const strings = document.getElementById('strings').value
+            const stringc = document.getElementById('stringc').value
+            const integers = document.getElementById('integers').value
+            const integerc = document.getElementById('integerc').value
+            const floats = document.getElementById('floats').value
+            const floatc = document.getElementById('floatc').value
+            const datens = document.getElementById('datens').value
+            const datenc = document.getElementById('datenc').value
+            const booleans = document.getElementById('booleans').value
+            const booleanc = document.getElementById('booleanc').value
+            params = {
+                ...params,
+                strings, stringc,
+                integers, integerc,
+                floats, floatc,
+                datens, datenc,
+                booleans, booleanc,
+                page,
+            }
+            readData(params);
+
+        });
+
+        document.getElementById("stringc").addEventListener("change", function () {
+            if (this.checked) {
+                console.log(this.value);
+            } else {
+                console.log('ini else', this.value);
+            }
+        })
+
+        let params = {};
+
+        const changePage = (page) => {
+            params = { ...params, page }
+            readData(params)
+            return false
         }
 
-        const readData = () => {
-            fetch('http://localhost:3000/users')
+        const changeSort = (sortBy, sortMode) => {
+            params = { ...params, sortBy, sortMode }
+            readData(params)
+            return false
+        }
+
+        //read
+        const readData = (params) => {
+            fetch(`http://localhost:3000/users/?${new URLSearchParams(params).toString()}`)
                 .then((response) => response.json())
-                .then((data) => {
-                    let html = ''
+                .then(({ data, page, pages, offset, sortBy, sortMode }) => {
+                    params = { ...params, page, pages, offset, sortBy, sortMode }
+                    let html = ""
                     data.forEach((item, index) => {
                         html += `
                     <tr>
-                        <td>${index + 1}</td>
+                        <td>${index + 1 + offset}</td>
                         <td>${item.string}</td>
                         <td>${item.integer}</td>
                         <td>${item.float}</td>
-                        <td>${item.daten}</td>
+                        <td>${moment(item.daten).format("DD MMMM YYYY")}</td>
                         <td>${item.boolean}</td>
                         <td>
-                            <button type="button" class="btn btn-success" onclick="editData('${item._id}')"><i class="fa-solid fa-pen"></i></button>
-                            <button type="button" class="btn btn-danger" onclick="removeData('${item._id}')"><i class="fa-solid fa-trash"></i></button>
+                            <button type="button" class="btn btn-success" onclick="editData('${item._id}')"><i class="fa-solid fa-pen" onclick="editData('${item._id}')"></i></button>
+                            <button type="button" class="btn btn-danger" onclick="removeData('${item._id}')"><i class="fa-solid fa-trash" onclick="removeData('${item._id}')"></i></button>
                         </td>
-                    </tr>
-                    `
+                    </tr>`
                     });
-
                     document.getElementById('users-body').innerHTML = html
-                });
+                    pagination(params);
+                    sorting(params)
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                })
         }
 
+        //pagination
+        const pagination = (params) => {
+            let li = "";
+
+            let beforePages = params.page - 1;
+            let afterPages = params.page + 1;
+            let liActive;
+
+            if (params.page >= 1) {
+                li += `
+                <li class="page-item ${params.page == 1 ? "disabled" : ""}">
+                    <a class="page-link" href="javascript:void(0)" onclick="changePage(${params.page - 1})">Previous</a>
+                </li>`
+            }
+
+            for (let i = beforePages; i <= afterPages; i++) {
+                if (i > params.pages) {
+                    continue;
+                }
+
+                if (i == 0) {
+                    i = i + 1
+                }
+
+                if (params.page == i) {
+                    liActive = "active";
+                } else {
+                    liActive = ""
+                }
+
+                li += `
+                <li class="page-item ${liActive}">
+                    <a class="page-link" href="javascript:void(0)" onclick="changePage(${(i)})">
+                        ${i}
+                    </a>    
+                </li>`
+            }
+
+            if (params.page <= params.pages) {
+                li += `
+                <li class="page-item ${params.page == params.pages ? "disabled" : ""}">
+                    <a class="page-link" href="javascript:void(0)" onclick="changePage(${params.page + 1})">Next</a>    
+                </li>`
+            }
+
+            document.getElementById("pagination-body").innerHTML = li;
+        }
+
+        //sorting
+        const sorting = (params) => {
+            let tr = "";
+
+            tr += `
+            <tr>
+                <th>No</th>
+                <th>
+                    <a href="javascript:void(0)" onclick="changeSort('string','${params.sortMode == "asc" ? (sortMode = "desc") : (sortMode = "asc")}')">String &nbsp
+                        <i class="fa-solid fa-${params.sortBy == "string" ? params.sortMode == "asc" ? "sort-up" : "sort-down" : "sort"}"></i>
+                </th>
+                <th>
+                    <a href="javascript:void(0)" onclick="changeSort('integer','${params.sortMode == "asc" ? (sortMode = "desc") : (sortMode = "asc")}')">Integer &nbsp
+                        <i class="fa-solid fa-${params.sortBy == "integer" ? params.sortMode == "asc" ? "sort-up" : "sort-down" : "sort"}"></i> 
+                </th>
+                <th>
+                    <a href="javascript:void(0)" onclick="changeSort('float','${params.sortMode == "asc" ? (sortMode = "desc") : (sortMode = "asc")}')">Float &nbsp
+                        <i class="fa-solid fa-${params.sortBy == "float" ? params.sortMode == "asc" ? "sort-up" : "sort-down" : "sort"}"></i> 
+                </th>
+                <th>
+                    <a href="javascript:void(0)" onclick="changeSort('daten','${params.sortMode == "asc" ? (sortMode = "desc") : (sortMode = "asc")}')">Date &nbsp
+                        <i class="fa-solid fa-${params.sortBy == "daten" ? params.sortMode == "asc" ? "sort-up" : "sort-down" : "sort"}"></i> 
+                </th>
+                <th>
+                    <a href="javascript:void(0)" onclick="changeSort('boolean','${params.sortMode == "asc" ? (sortMode = "desc") : (sortMode = "asc")}')">Boolean &nbsp
+                        <i class="fa-solid fa-${params.sortBy == "boolean" ? params.sortMode == "asc" ? "sort-up" : "sort-down" : "sort"}"></i> 
+                </th>
+                <th>Actions</th>
+            </tr>`
+
+            document.getElementById("sort-tab").innerHTML = tr
+        }
+
+
+        //add & edit
         const saveData = (id, string, integer, float, daten, boolean) => {
             let url = 'http://localhost:3000/users'
             let method = 'POST'
@@ -251,11 +353,30 @@
                 document.getElementById('daten').value = ''
                 document.getElementById('boolean').value = ''
                 readData()
+
             }).catch((error) => {
                 console.error('Error:', error);
             });
         }
 
+        //edit
+        const editData = (id) => {
+            fetch(`http://localhost:3000/users/${id}`)
+                .then((response) => response.json())
+                .then((data) => {
+                    document.getElementById('id').value = data._id
+                    document.getElementById('string').value = data.string
+                    document.getElementById('integer').value = data.integer
+                    document.getElementById('float').value = data.float
+                    document.getElementById('daten').value = moment(data.daten).format("YYYY-MM-DD")
+                    document.getElementById('boolean').value = data.boolean
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                });
+        }
+
+        //hapus 
         const removeData = (id) => {
             if (confirm('anda yakin?')) {
                 fetch(`http://localhost:3000/users/${id}`, {
